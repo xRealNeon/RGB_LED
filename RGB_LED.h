@@ -39,15 +39,15 @@ class RGB_LED
 {
     public:
         // SETUP 
-        RGB_LED(byte pinR,byte pinG,byte pinB, int maxPWM);
-        RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB, int maxPWM);
+        RGB_LED(byte pinR,byte pinG,byte pinB);
+        RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB);
         void setCallback(float (*CallBack)(float x));
 
         // SET 
-        void set(byte Rvalue,byte Gvalue,byte Bvalue);
+        void set(int Rvalue,int Gvalue,int Bvalue);
         void setSpeed(unsigned long speedValue);
         void setPercentFade(float FadeValue);
-        void fadeTo(byte Rvalue,byte Gvalue,byte Bvalue,unsigned long speedValue);
+        void fadeTo(int Rvalue,int Gvalue,int Bvalue,unsigned long speedValue);
         void setFunction(byte functionValue);
         void setRandom();
         void setColour(byte colour);
@@ -58,9 +58,9 @@ class RGB_LED
         unsigned long getSpeed();
         float getPercentFade();
         byte getFunction();
-        byte getCurrentRValue();
-        byte getCurrentGValue();
-        byte getCurrentBValue();
+        int getCurrentRValue();
+        int getCurrentGValue();
+        int getCurrentBValue();
         int getFunctionCount();
 
         // CHECKING 
@@ -77,15 +77,15 @@ class RGB_LED
         byte R_Pin;
         byte G_Pin;
         byte B_Pin;
-        byte R_Last_value;
-        byte G_Last_value;
-        byte B_Last_value;
-        byte R_Current_value;
-        byte G_Current_value;
-        byte B_Current_value;
-        byte R_Future_value;
-        byte G_Future_value;
-        byte B_Future_value;
+        int R_Last_value;
+        int G_Last_value;
+        int B_Last_value;
+        int R_Current_value;
+        int G_Current_value;
+        int B_Current_value;
+        int R_Future_value;
+        int G_Future_value;
+        int B_Future_value;
 
         unsigned long Speed = 2000;
         unsigned long starting_time;
