@@ -39,8 +39,8 @@ class RGB_LED
 {
     public:
         // SETUP 
-        RGB_LED(byte pinR,byte pinG,byte pinB, byte maxPWM);
-        RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB, byte maxPWM);
+        RGB_LED(byte pinR,byte pinG,byte pinB, int maxPWM);
+        RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB, int maxPWM);
         void setCallback(float (*CallBack)(float x));
 
         // SET 
@@ -73,7 +73,7 @@ class RGB_LED
         void delay(unsigned long delayValue);
         
     private:
-        byte Max_PWM;
+        int Max_PWM;
         byte R_Pin;
         byte G_Pin;
         byte B_Pin;

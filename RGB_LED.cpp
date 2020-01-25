@@ -15,7 +15,7 @@
 
 /******************* SETUP *******************/
 
-RGB_LED::RGB_LED(byte pinR,byte pinG,byte pinB, byte maxPWM)
+RGB_LED::RGB_LED(byte pinR,byte pinG,byte pinB, int maxPWM)
 {
     Max_PWM = maxPWM;
     R_Pin = pinR;
@@ -28,7 +28,7 @@ RGB_LED::RGB_LED(byte pinR,byte pinG,byte pinB, byte maxPWM)
     FadeFunctionCallBack = linear;
 }
 
-RGB_LED::RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB, byte maxPWM)
+RGB_LED::RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB, int maxPWM)
 {
     Max_PWM = maxPWM;
     R_Pin = pinR;
