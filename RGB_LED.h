@@ -39,8 +39,8 @@ class RGB_LED
 {
     public:
         // SETUP 
-        RGB_LED(byte pinR,byte pinG,byte pinB);
-        RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB);
+        RGB_LED(byte pinR,byte pinG,byte pinB, byte maxPWM);
+        RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB, byte maxPWM);
         void setCallback(float (*CallBack)(float x));
 
         // SET 
