@@ -15,8 +15,9 @@
 
 /******************* SETUP *******************/
 
-RGB_LED::RGB_LED(byte pinR,byte pinG,byte pinB)
+RGB_LED::RGB_LED(byte pinR,byte pinG,byte pinB, byte maxPWM)
 {
+    Max_PWM = maxPWM;
     R_Pin = pinR;
     G_Pin = pinG;
     B_Pin = pinB;
@@ -27,8 +28,9 @@ RGB_LED::RGB_LED(byte pinR,byte pinG,byte pinB)
     FadeFunctionCallBack = linear;
 }
 
-RGB_LED::RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB)
+RGB_LED::RGB_LED(bool inverted, byte pinR,byte pinG,byte pinB, byte maxPWM)
 {
+    Max_PWM = maxPWM;
     R_Pin = pinR;
     G_Pin = pinG;
     B_Pin = pinB;
@@ -90,25 +92,25 @@ void RGB_LED::setColour(byte colour)
             RGB_LED::set(0,0,0);
             break;
         case White:
-            RGB_LED::set(255,255,255);
+            RGB_LED::set(Max_PWM,Max_PWM,Max_PWM);
             break;
         case Red:
-            RGB_LED::set(255,0,0);
+            RGB_LED::set(Max_PWM,0,0);
             break;
         case Green:
-            RGB_LED::set(0,255,0);
+            RGB_LED::set(0,Max_PWM,0);
             break;
         case Blue:
-            RGB_LED::set(0,0,255);
+            RGB_LED::set(0,0,Max_PWM);
             break;
         case Yellow:
-            RGB_LED::set(255,255,0);
+            RGB_LED::set(Max_PWM,Max_PWM,0);
             break;
         case Purple:
             RGB_LED::set(80,0,80);
             break;
         case Aqua:
-            RGB_LED::set(0,255,255);
+            RGB_LED::set(0,Max_PWM,Max_PWM);
             break;
       }
 }
@@ -120,25 +122,25 @@ void RGB_LED::fadeToColour(byte colour,unsigned long speedValue)
             RGB_LED::fadeTo(0,0,0,speedValue);
             break;
         case White:
-            RGB_LED::fadeTo(255,255,255,speedValue);
+            RGB_LED::fadeTo(Max_PWM,Max_PWM,Max_PWM,speedValue);
             break;
         case Red:
-            RGB_LED::fadeTo(255,0,0,speedValue);
+            RGB_LED::fadeTo(Max_PWM,0,0,speedValue);
             break;
         case Green:
-            RGB_LED::fadeTo(0,255,0,speedValue);
+            RGB_LED::fadeTo(0,Max_PWM,0,speedValue);
             break;
         case Blue:
-            RGB_LED::fadeTo(0,0,255,speedValue);
+            RGB_LED::fadeTo(0,0,Max_PWM,speedValue);
             break;
         case Yellow:
-            RGB_LED::fadeTo(255,255,0,speedValue);
+            RGB_LED::fadeTo(Max_PWM,Max_PWM,0,speedValue);
             break;
         case Purple:
             RGB_LED::fadeTo(80,0,80,speedValue);
             break;
         case Aqua:
-            RGB_LED::fadeTo(0,255,255,speedValue);
+            RGB_LED::fadeTo(0,Max_PWM,Max_PWM,speedValue);
             break;
       }
 }
@@ -298,9 +300,9 @@ void RGB_LED::writeOutput()
 {
     if(invertedPins == true)
     {
-        analogWrite(R_Pin,255-R_Current_value);
-        analogWrite(G_Pin,255-G_Current_value);
-        analogWrite(B_Pin,255-B_Current_value);
+        analogWrite(R_Pin,Max_PWM-R_Current_value);
+        analogWrite(G_Pin,Max_PWM-G_Current_value);
+        analogWrite(B_Pin,Max_PWM-B_Current_value);
     }
     else
     {
@@ -368,7 +370,7 @@ void RGB_LED::FadeFunction()
 
 void RGB_LED::FadeRandomFunction()
 {
-    RGB_LED::fadeTo(random(255),random(255),random(255),random(100,5000));
+    RGB_LED::fadeTo(random(Max_PWM),random(Max_PWM),random(Max_PWM),random(100,5000));
 }
 
 
@@ -444,7 +446,7 @@ void RGB_LED::StepRandomFunction()
     {
         starting_time = millis();
         Speed = random(100,5000);
-        RGB_LED::set(random(255),random(255),random(255));
+        RGB_LED::set(random(Max_PWM),random(Max_PWM),random(Max_PWM));
     }
 }
 

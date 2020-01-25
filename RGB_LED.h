@@ -73,6 +73,7 @@ class RGB_LED
         void delay(unsigned long delayValue);
         
     private:
+        byte Max_PWM;
         byte R_Pin;
         byte G_Pin;
         byte B_Pin;
