@@ -56,9 +56,9 @@ void RGB_LED::fadeTo(int Rvalue, int Gvalue, int Bvalue, unsigned long speedValu
     G_Last_value = G_Current_value;
     B_Last_value = B_Current_value;
 
-    R_Future_value = mapRGB(Rvalue);
-    G_Future_value = mapRGB(Gvalue);
-    B_Future_value = mapRGB(Bvalue);
+    R_Future_value = RGB_LED::mapRGB(Rvalue);
+    G_Future_value = RGB_LED::mapRGB(Gvalue);
+    B_Future_value = RGB_LED::mapRGB(Bvalue);
 
     function = Solid;
     starting_time = millis();
@@ -66,17 +66,17 @@ void RGB_LED::fadeTo(int Rvalue, int Gvalue, int Bvalue, unsigned long speedValu
 
 void RGB_LED::set(int Rvalue, int Gvalue, int Bvalue)
 {
-    R_Last_value = mapRGB(Rvalue);
-    G_Last_value = mapRGB(Gvalue);
-    B_Last_value = mapRGB(Bvalue);
+    R_Last_value = RGB_LED::mapRGB(Rvalue);
+    G_Last_value = RGB_LED::mapRGB(Gvalue);
+    B_Last_value = RGB_LED::mapRGB(Bvalue);
 
-    R_Current_value = mapRGB(Rvalue);
-    G_Current_value = mapRGB(Gvalue);
-    B_Current_value = mapRGB(Bvalue);
+    R_Current_value = RGB_LED::mapRGB(Rvalue);
+    G_Current_value = RGB_LED::mapRGB(Gvalue);
+    B_Current_value = RGB_LED::mapRGB(Bvalue);
 
-    R_Future_value = mapRGB(Rvalue);
-    G_Future_value = mapRGB(Gvalue);
-    B_Future_value = mapRGB(Bvalue);
+    R_Future_value = RGB_LED::mapRGB(Rvalue);
+    G_Future_value = RGB_LED::mapRGB(Gvalue);
+    B_Future_value = RGB_LED::mapRGB(Bvalue);
 
     function = Solid;
 
@@ -106,7 +106,7 @@ void RGB_LED::setColour(byte colour)
         RGB_LED::set(PWMRANGE, PWMRANGE, 0);
         break;
     case Purple:
-        RGB_LED::set(mapRGB(80), 0, mapRGB(80));
+        RGB_LED::set(RGB_LED::mapRGB(80), 0, RGB_LED::mapRGB(80));
         break;
     case Aqua:
         RGB_LED::set(0, PWMRANGE, PWMRANGE);
@@ -137,7 +137,7 @@ void RGB_LED::fadeToColour(byte colour, unsigned long speedValue)
         RGB_LED::fadeTo(PWMRANGE, PWMRANGE, 0, speedValue);
         break;
     case Purple:
-        RGB_LED::fadeTo(mapRGB(80), 0, mapRGB(80), speedValue);
+        RGB_LED::fadeTo(RGB_LED::mapRGB(80), 0, RGB_LED::mapRGB(80), speedValue);
         break;
     case Aqua:
         RGB_LED::fadeTo(0, PWMRANGE, PWMRANGE, speedValue);
@@ -342,7 +342,7 @@ void RGB_LED::FunctionsFinished()
 
 /******************* COLOUR FUNCTIONS *******************/
 
-int mapRGB(int in)
+int RGB_LED::mapRGB(int in)
 {
     return map(in, 0, 255, 0, PWMRANGE);
 }
